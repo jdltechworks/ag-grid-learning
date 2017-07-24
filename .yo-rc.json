@@ -1,0 +1,9 @@
+{
+  "generator-bz-react-component": {
+    "promptValues": {
+      "module:author:nickname": "jdltechworks",
+      "module:author:email": "jo@bigzeta.com",
+      "module:author:fullName": "Jose Lo Jr"
+    }
+  }
+}

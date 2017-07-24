@@ -1,0 +1,95 @@
+{
+  "name": "@bigzeta/synoptic-grid",
+  "description": "AGgridReact module for synopticonce",
+  "main": "./lib/index.js",
+  "jsnext:main": "dist/index.es2015.js",
+  "version": "0.0.0",
+  "scripts": {
+    "commit": "git-cz",
+    "lint": "eslint *.js test/ src/ dev/src/ dev/*.js",
+    "lint:fix": "npm run lint -- --fix",
+    "build": "NODE_ENV=production gulp sass-build && npm run build-cjs && npm run build-es6",
+    "build-cjs": "rimraf lib && BABEL_ENV=production babel ./src -d lib --plugins=transform-es2015-modules-commonjs",
+    "build-es6": "rimraf es6 && babel ./src -d es6",
+    "build:watch": "babel -w ./src -d lib --copy-files",
+    "compile:dev": "webpack --env=dev --progress --profile --colors",
+    "compile:dev:watch": "rimraf dist.dev/js/ && webpack-dev-server --env=dev --progress --profile --colors --watch",
+    "start": "webpack --env=devserver --progress --profile --colors",
+    "compile:prod": "rimraf dist.proj/js/ && webpack -p --env=production --profile --colors",
+    "compile:prodtest": "rimraf dist.prod/js/ && webpack -p --env=production --profile --colors",
+    "pretest": "npm run lint",
+    "test": "NODE_PATH=src jest",
+    "test:watch": "npm run test -- --watch",
+    "coverage": "NODE_PATH=src jest --coverage",
+    "2npm": "publish",
+    "version": "npm run build",
+    "postversion:manual": "git push && git push --tags",
+    "update_snapshot": "NODE_PATH=src jest --updateSnapshot"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-component",
+    "es6"
+  ],
+  "author": {
+    "name": "Jose Lo Jr",
+    "email": "jo@bigzeta.com"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "ag-grid": "^11.0.0",
+    "ag-grid-enterprise": "^11.0.0",
+    "ag-grid-react": "^11.0.0",
+    "lodash": "^4.17.4",
+    "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.5.2",
+    "react-addons-transition-group": "^15.5.2",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "react-router": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-module-builder": "^0.3.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "*",
+    "babel-core": "^6.24.1",
+    "babel-plugin-inline-dotenv": "^1.1.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "commitizen": "^2.9.6",
+    "coveralls": "*",
+    "css-loader": "^0.28.1",
+    "cz-conventional-changelog": "^2.0.0",
+    "es5-shim": "^4.5.9",
+    "eslint": "^3.13.1",
+    "eslint-loader": "^1.6.3",
+    "eslint-plugin-babel": "^4.1.0",
+    "eslint-plugin-react": "^7.0.0",
+    "ghooks": "^2.0.0",
+    "jest": "^20.0.0",
+    "jest-cli": "^20.0.0",
+    "jest-junit": "^1.0.4",
+    "prop-type": "^0.0.1",
+    "react-addons-test-utils": "^15.5.1",
+    "react-test-renderer": "^15.5.4",
+    "rimraf": "^2.6.1",
+    "sinon": "*"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    },
+    "ghooks": {
+      "pre-commit": "npm run test"
+    }
+  }
+}
